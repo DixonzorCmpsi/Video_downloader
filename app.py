@@ -4,7 +4,15 @@ from urllib.parse import urlparse, parse_qs
 from pytubefix import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi
 
-app = Flask(__name__)
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static"),
+)
+
+
 
 # ---------- helpers ----------
 def _has_ffmpeg() -> bool:
