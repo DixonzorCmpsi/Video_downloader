@@ -1,4 +1,4 @@
-Flask
+Flask>=2.2
 yt-dlp
 pytubefix
 youtube-transcript-api
