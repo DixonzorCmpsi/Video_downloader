@@ -1,0 +1,37 @@
+@"
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Envs & secrets
+.venv/
+venv/
+env/
+.env
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Logs
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editors/IDE
+.vscode/
+.idea/
+
+# Misc
+__snapshots__/
+"@ | Out-File -Encoding utf8 .gitignore
+# This .gitignore file is for Python projects and includes common patterns to ignore.
+# It ignores Python bytecode, virtual environments, build artifacts, logs, OS junk files,
