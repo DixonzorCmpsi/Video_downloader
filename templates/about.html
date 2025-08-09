@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}About Me{% endblock %}
+{% block content %}
+  <h1 class="text-4xl font-bold mb-4">About Me</h1>
+  <p class="text-gray-400 mb-8 leading-relaxed text-left">
+    Hi, My name is Dixon. I am a computer science graduate who currently works at Penn State as an AI Application Specialist.
+    My passion is building software that helps make the mundane a little more manageable. My journey to creating this free
+    tool began out of frustration; I once tried using other downloaders and was bombarded with a sheer amount of crazy ads
+    and even a virus. That's why I created this free, ad-free tool. If you have any suggestions or would like to see more
+    features added, please don't hesitate to reach out!
+  </p>
+  <a href="{{ url_for('index') }}" class="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 mt-8 inline-block">
+    Go Back to YouTube Downloader
+  </a>
+{% endblock %}

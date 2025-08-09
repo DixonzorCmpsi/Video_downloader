@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Contact Me{% endblock %}
+{% block content %}
+  <h1 class="text-4xl font-bold mb-4">Contact Me</h1>
+  <div class="text-left space-y-4">
+    <p><strong>Email:</strong> <a href="mailto:dixonfzor@gmail.com" class="text-blue-400 hover:underline">dixonfzor@gmail.com</a></p>
+    <p><strong>YouTube Channel:</strong> <a href="https://www.youtube.com/channel/UCD1QlTxgKdpxBvy1zPjND9w" target="_blank" class="text-red-400 hover:underline">Deetalk</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/dixon-zor" target="_blank" class="text-blue-500 hover:underline">linkedin.com/in/dixon-zor</a></p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/DixonzorCmpsi" target="_blank" class="text-gray-400 hover:underline">github.com/DixonzorCmpsi</a></p>
+  </div>
+  <a href="{{ url_for('index') }}" class="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 mt-8 inline-block">
+    Go Back to YouTube Downloader
+  </a>
+{% endblock %}

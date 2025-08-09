@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}TikTok Downloader{% endblock %}
+{% block content %}
+  <h1 class="text-4xl font-bold mb-4">TikTok Downloader</h1>
+  <p class="text-gray-400 mb-8">Enter a TikTok URL below to download a video.</p>
+
+  <form id="tiktokActionForm" class="flex flex-col space-y-4">
+    <input id="tiktokUrlInput" type="text" name="url"
+           placeholder="e.g., https://www.tiktok.com/@user/video/1234567890123456789"
+           class="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-purple-500 text-white"
+           required>
+    <div class="flex flex-wrap justify-center gap-4">
+      <button type="button" class="p-3 bg-purple-600 rounded-lg hover:bg-purple-700"
+              data-action="{{ url_for('download_tiktok_video') }}" data-input="tiktokUrlInput">
+        Download Video
+      </button>
+    </div>
+  </form>
+
+  <a href="{{ url_for('index') }}" class="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 mt-8 inline-block">
+    Go Back to YouTube Downloader
+  </a>
+{% endblock %}
