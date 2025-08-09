@@ -12,8 +12,6 @@ app = Flask(
     static_folder=os.path.join(BASE_DIR, "static"),
 )
 
-
-
 # ---------- helpers ----------
 def _has_ffmpeg() -> bool:
     return shutil.which("ffmpeg") is not None or shutil.which("ffmpeg.exe") is not None
@@ -67,7 +65,7 @@ def download_audio():
         audio_stream.stream_to_buffer(file_data)
         file_data.seek(0)
         title = "".join(c for c in yt.title if c.isalnum() or c in (' ', '_')).rstrip().replace(' ', '_')
-        return send_file(file_data, as_attachment=True, mimetype="audio/mp3", download_name=f"{title}.mp3")
+        return send_file(file_data, as_attachment=True, mimetype="audio/mp4", download_name=f"{title}.mp4a")
     except Exception as e:
         print(f"[download_audio] {e}")
         return jsonify({"error": str(e)}), 500
