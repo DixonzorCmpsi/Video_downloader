@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader & Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for the slide-out menu */
+        .slide-in-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .slide-in-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Header containing the menu button, spanning the full width of its container -->
+    <header class="w-full max-w-6xl flex justify-between items-center p-4">
+        <!-- Responsive Hamburger Menu (Top-Right) -->
+        <button id="menu-button" class="p-2 text-white bg-gray-700 rounded-lg lg:hidden">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </header>
+    
+    <!-- Slide-in Menu Panel -->
+    <div id="menu-panel" class="fixed top-0 right-0 h-full w-64 bg-gray-800 shadow-lg p-6 z-40 slide-in-menu lg:hidden">
+        <div class="flex justify-end mb-8">
+            <button onclick="toggleMenu()" class="p-2 text-white bg-gray-700 rounded-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-4 text-xl">
+            <a href="/" class="block p-2 text-blue-400 rounded-lg hover:bg-gray-700">YouTube Downloader</a>
+            <a href="/tiktok" class="block p-2 text-white rounded-lg hover:bg-gray-700">TikTok Downloader</a>
+            <a href="/instagram" class="block p-2 text-white rounded-lg hover:bg-gray-700">Instagram Downloader</a>
+        </nav>
+    </div>
+
+    <!-- Main content container -->
+    <div class="bg-gray-800 p-12 rounded-2xl shadow-xl max-w-6xl w-full text-center mt-8">
+        <h1 class="text-4xl font-bold mb-4">YouTube Downloader & Tools</h1>
+        <p class="text-gray-400 mb-8">Enter a YouTube URL below and select an action.</p>
+        
+        <form id="actionForm" class="flex flex-col space-y-4">
+            <input 
+                id="urlInput"
+                type="text" 
+                name="url" 
+                placeholder="e.g., https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                class="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-200"
+                required>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button type="button" onclick="submitForm('/download_audio')" 
+                    class="p-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                    Download Audio (.m4a)
+                </button>
+                <button type="button" onclick="submitForm('/download_video')" 
+                    class="p-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors duration-200">
+                    Download Video (.mp4)
+                </button>
+                <button type="button" onclick="submitForm('/download_thumbnail')" 
+                    class="p-3 bg-yellow-600 text-white font-bold rounded-lg hover:bg-yellow-700 transition-colors duration-200">
+                    Download Thumbnail
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold mb-4">Other Tools</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <!-- Buttons to navigate to other pages -->
+                <a href="/tiktok" class="p-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-700 transition-colors duration-200">
+                    TikTok Downloader
+                </a>
+                <a href="/instagram" class="p-3 bg-pink-600 text-white font-bold rounded-lg hover:bg-pink-700 transition-colors duration-200">
+                    Instagram Downloader
+                </a>
+            </div>
+        </div>
+
+        <!-- Custom message box to replace alert() -->
+        <div id="messageBox" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-75 z-50 hidden">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-xl max-w-sm w-full text-center">
+                <p id="messageText" class="text-lg font-semibold mb-4"></p>
+                <button onclick="document.getElementById('messageBox').classList.add('hidden')" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuPanel = document.getElementById('menu-panel');
+
+        function showMessage(message) {
+            document.getElementById('messageText').textContent = message;
+            document.getElementById('messageBox').classList.remove('hidden');
+        }
+
+        function toggleMenu() {
+            menuPanel.classList.toggle('open');
+        }
+
+        document.getElementById('menu-button').addEventListener('click', toggleMenu);
+
+        async function submitForm(action) {
+            const urlInput = document.getElementById('urlInput');
+
+            if (!urlInput.value) {
+                showMessage('Please enter a YouTube URL.');
+                return;
+            }
+            
+            const url = `${action}?url=${encodeURIComponent(urlInput.value)}`;
+
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
