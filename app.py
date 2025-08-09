@@ -46,6 +46,10 @@ def about():
 def contact():
     return render_template("contact.html")
 
+# in app.py (once)
+@app.route("/_health")
+def _health():
+    return "ok", 200
 
 
 # ---------- YouTube tools ----------
