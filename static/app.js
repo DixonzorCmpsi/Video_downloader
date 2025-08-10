@@ -1,3 +1,4 @@
+// static/app.js
 function showMessage(message) {
   const box = document.getElementById('messageBox');
   const text = document.getElementById('messageText');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (box) box.classList.add('hidden');
   });
 
-  // Any button with data-action + data-input will redirect to ?url=<value>
+  // Generic action: any button with data-action + data-input
   document.querySelectorAll('button[data-action][data-input]').forEach(btn => {
     btn.addEventListener('click', () => {
       const inputId = btn.getAttribute('data-input');

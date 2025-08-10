@@ -1,0 +1,35 @@
+<!-- templates/instagram.html -->
+{% extends "base.html" %}
+
+{% block title %}Instagram Downloader — DeeTalk{% endblock %}
+
+{% block content %}
+  <h1 class="text-4xl font-bold mb-4">Instagram Downloader</h1>
+  <p class="text-gray-400 mb-8">Enter a public Instagram Reel/Post URL to download the video.</p>
+
+  <form class="flex flex-col space-y-4">
+    <input
+      id="instaUrlInput"
+      type="text"
+      name="url"
+      placeholder="e.g., https://www.instagram.com/reel/XXXXXXXXXXX/"
+      class="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-pink-500 text-white transition-colors duration-200"
+      required
+    >
+    <div class="flex flex-wrap justify-center gap-4">
+      <button
+        type="button"
+        data-action="/download_insta_video"
+        data-input="instaUrlInput"
+        class="p-3 bg-pink-600 text-white font-bold rounded-lg hover:bg-pink-700 transition-colors duration-200"
+      >
+        Download Video/Reel
+      </button>
+    </div>
+  </form>
+
+  <a href="{{ url_for('index') }}"
+     class="p-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors duration-200 mt-8 inline-block">
+    Go Back to YouTube Downloader
+  </a>
+{% endblock %}
